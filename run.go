@@ -66,15 +66,14 @@ func handleReadFile(fileName string) []string {
 }
 
 func handleRegisterLogs(url string, status bool) {
-	date := time.Now().Format("2006-01-02")
-	hours := time.Now().Format("15:04:05")
+	CURRENT_DATE_HOUR := time.Now().Format("2006-01-02 15:04:05")
 	file, err := os.OpenFile("logs.txt", os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
 
 	if err != nil {
 		fmt.Println("❌ something is wrong:", err)
 	}
 
-	file.WriteString(date + " - " + hours + " url: " + url + " - " + strconv.FormatBool(status) + "\n")
+	file.WriteString(CURRENT_DATE_HOUR + " - " + "url: " + url + " - " + strconv.FormatBool(status) + "\n")
 	file.Close()
 }
 
